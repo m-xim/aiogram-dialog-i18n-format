@@ -35,7 +35,11 @@ class I18NFormat(Text):
         return value
 
     async def _transform(self, data: dict, manager: DialogManager) -> Dict[str, Any]:
-        return {key: (await self._resolve(val, data, manager)) or "" for key, val in self.mapping.items()}
+        transformed_data = {}
+        for key, val in self.mapping.items():
+            resolved_val = await self._resolve(val, data, manager)
+            transformed_data[key] = "" if resolved_val is None else resolved_val  # Fluent does not support None
+        return transformed_data
 
     async def _render_text(self, data: dict, manager: DialogManager) -> str:
         i18n: Optional[I18nContext] = manager.middleware_data.get(I18N_FORMAT_KEY)
