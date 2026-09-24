@@ -1,8 +1,8 @@
 # aiogram-dialog-i18n-format
 
 > [!WARNING]
-> **This repository is archived.** The widget has moved to [m-xim/aiogram-dialog-i18n](https://github.com/m-xim/aiogram-dialog-i18n)
-> and is published on PyPI as [`aiogram-dialog-i18n`](https://pypi.org/project/aiogram-dialog-i18n).
+> **This repository is archived.** The widget has moved to [m-xim/aiogram-dialog-i18n](https://github.com/m-xim/aiogram-dialog-i18n),
+> a package on PyPI instead of a copied file. See its README for installation and usage.
 
 A widget for [aiogram_dialog](https://github.com/Tishka17/aiogram_dialog) that adds i18n support
 using [aiogram_i18n](https://github.com/aiogram/aiogram_i18n).
@@ -10,21 +10,19 @@ using [aiogram_i18n](https://github.com/aiogram/aiogram_i18n).
 ## Migration
 
 ```bash
-uv add aiogram-dialog-i18n
+uv add "aiogram-dialog-i18n[aiogram-i18n]"
 # or
-pip install aiogram-dialog-i18n
+pip install "aiogram-dialog-i18n[aiogram-i18n]"
 ```
 
-## Migration
-
 ```python
-# before (copied i18n_format.py)
+# before
 from i18n_format import I18NFormat
 
 I18NFormat("bot-settings", None, F["show"], url=Format("t.me/{bot.username}?start=settings"))
 
 # after
-from aiogram_dialog_i18n import I18nFormat
+from aiogram_dialog_i18n.aiogram_i18n import I18nFormat
 
 I18nFormat("bot-settings", when=F["show"], url=Format("t.me/{bot.username}?start=settings"))
 ```
